@@ -1,0 +1,27 @@
+name: Deploy to Sandbox Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to server
+      run: |
+        ssh -o StrictHostKeyChecking=no leonidk@94.130.75.230 "
+          cd /home/leonidk/sandbox-project &&
+          git pull origin main &&
+          sudo systemctl restart sandbox.service
+        "
