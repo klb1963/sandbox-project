@@ -25,5 +25,6 @@ jobs:
             git pull origin main &&
             source venv/bin/activate &&
             pip install -r requirements.txt &&
+            python -c 'from app.database.db import Base, engine; from app.models.company import Company; Base.metadata.create_all(bind=engine)' &&
             sudo systemctl restart sandbox.service
           "
