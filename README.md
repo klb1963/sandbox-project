@@ -16,4 +16,4 @@
 ```bash
 uvicorn app.main:app --reload
 
-Тестовый пуш
+Тестовый пуш ЕЩЕ РАЗ
