@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float
 from app.database.db import Base
 
 class Company(Base):
@@ -10,3 +10,5 @@ class Company(Base):
     website = Column(String)
     email = Column(String)
     linkedin = Column(String)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
