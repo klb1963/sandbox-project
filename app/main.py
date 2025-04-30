@@ -6,8 +6,16 @@ from app.api.routes import router
 
 # Подключаем фронтенд в проде
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend/dist"))
-print("📁 Static path to frontend:", frontend_path)
-print("📄 index.html exists:", os.path.exists(os.path.join(frontend_path, "index.html")))
+if not os.path.exists(frontend_path):
+    raise RuntimeError(f"❌ Static frontend path not found: {frontend_path}")
+else:
+    print(f"✅ Static frontend path found: {frontend_path}")
+
+index_file = os.path.join(frontend_path, "index.html")
+if not os.path.isfile(index_file):
+    raise RuntimeError(f"❌ index.html not found at: {index_file}")
+else:
+    print(f"✅ index.html exists at: {index_file}")   
 
 app = FastAPI(
     title="Sandbox Project API",
