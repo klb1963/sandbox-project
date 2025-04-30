@@ -1,10 +1,10 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from app.api.routes import router
-import os  # Нужно для определения пути к index.html
 
-# Создаём приложение FastAPI
+from app.api.routes import router
+
 app = FastAPI(
     title="Sandbox Project API",
     description="API для сбора вакансий и публикации в Telegram",
@@ -16,16 +16,10 @@ app = FastAPI(
     },
 )
 
-# Регистрируем API-роуты под префиксом /api
+# Подключаем API роуты с префиксом /api
 app.include_router(router, prefix="/api")
 
-# Указываем путь к production-бандлу фронтенда
-frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
-
-# Монтируем фронтенд как статические файлы на корневой маршрут /
-app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
-
-# Настройки CORS, чтобы разрешить доступ с локального фронта (если нужно)
+# Разрешаем CORS для локального dev-фронтенда (если используешь Vite)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -33,3 +27,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Подключаем фронтенд в проде
+frontend_path = "/home/leonidk/sandbox-project/frontend/dist"
+app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
