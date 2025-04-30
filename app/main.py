@@ -1,15 +1,20 @@
 from fastapi.staticfiles import StaticFiles
 import os
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 
+# Настройка логгера
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 # Подключаем фронтенд в проде
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend/dist"))
 
-# ✅ Потом печатаем
-print("✅ Static frontend path found:", frontend_path)
-print("✅ index.html exists:", os.path.exists(os.path.join(frontend_path, "index.html")))   
+# ✅ Печатаем лог
+logger.info("✅ Static frontend path found: %s", frontend_path)
+logger.info("✅ index.html exists: %s", os.path.exists(os.path.join(frontend_path, "index.html")))
 
 app = FastAPI(
     title="Sandbox Project API",
