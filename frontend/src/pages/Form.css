@@ -1,0 +1,89 @@
+.form-container {
+  max-width: 500px;
+  margin: 40px 40px 40px 40px !important;  /* ← сдвиг формы влево */
+  padding: 24px 32px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.form-container h2 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #555;
+  text-transform: capitalize;
+}
+
+.form-container input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+.error {
+  color: #d00;
+  font-size: 0.9em;
+  margin-top: -12px;
+  margin-bottom: 12px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.button-group button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.button-group button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.button-group button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.button-group button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.button-group button[type="button"]:hover {
+  background-color: #495057;
+}
+
+@media (min-width: 480px) {
+  .button-group {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

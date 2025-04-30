@@ -1,0 +1,174 @@
+/* === Обёртка таблицы и контейнер === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* === Заголовок таблицы === */
+.company-list-wrapper h2 {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+/* === Таблица компаний === */
+.company-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Ячейки таблицы */
+.company-table th,
+.company-table td {
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+  background-color: #fff;
+}
+
+/* Заголовки */
+.company-table th {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.company-table th.active {
+  background-color: #e0eaff;
+  font-weight: bold;
+}
+
+.company-table tr:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.company-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Последняя колонка — Actions */
+.company-table td:last-child,
+.company-table th:last-child {
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Сортировка */
+.sort-arrow {
+  font-size: 0.9em;
+  margin-left: 6px;
+  position: relative;
+  top: -1px;
+}
+
+.sort-arrow.inactive {
+  color: #bbb;
+}
+
+.sort-arrow.active {
+  color: #000;
+}
+
+/* Кнопки действий */
+.action-edit {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.action-edit:hover {
+  text-decoration: underline;
+}
+
+.action-delete {
+  color: #dc3545;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* === Модальное окно === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.modal-buttons .confirm {
+  background: #d9534f;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-buttons .cancel {
+  background: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* === Адаптивность === */
+@media (max-width: 768px) {
+  .company-table th,
+  .company-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .action-edit,
+  .action-delete {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .modal {
+    width: 90%;
+  }
+}

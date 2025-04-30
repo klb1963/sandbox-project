@@ -1,0 +1,29 @@
+.home-container {
+  padding-left: 24px;
+  padding-right: 24px;
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.main-title {
+  margin-bottom: 12px;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.add-button {
+  margin-bottom: 24px;
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #2563eb;
+}

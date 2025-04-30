@@ -1,0 +1,26 @@
+.hamburger-nav {
+    position: relative;
+    padding: 10px;
+  }
+  
+  .hamburger-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menu {
+    display: none;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+  }
+  
+  .menu.open {
+    display: block;
+  }
+  
+  .menu li {
+    margin-bottom: 10px;
+  }
