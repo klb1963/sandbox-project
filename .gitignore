@@ -10,7 +10,7 @@ ENV/
 VENV/
 build/
 develop-eggs/
-dist/
+# dist/
 downloads/
 eggs/
 .eggs/
