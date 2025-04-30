@@ -18,6 +18,17 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Install frontend dependencies and build
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      - name: Upload frontend build to server
+        run: |
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
+          frontend/dist/ leonidk@94.130.75.230:/home/leonidk/sandbox-project/frontend/dist/
+
       - name: Deploy and Restart Service
         run: |
           ssh -o StrictHostKeyChecking=no leonidk@94.130.75.230 "
