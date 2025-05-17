@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import './Form.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 interface AddCompanyFormProps {
   onCompanyAdded: () => void;
 }
@@ -25,7 +27,7 @@ export default function AddCompanyForm({ onCompanyAdded }: AddCompanyFormProps) 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:8000/api/companies', {
+      await axios.post(`${API_URL}/companies/`, {
         ...formData,
         latitude: parseFloat(formData.latitude),
         longitude: parseFloat(formData.longitude),

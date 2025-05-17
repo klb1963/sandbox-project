@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Company, CompanyFormData } from '../types/Company';
 import './Form.css';
 
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Используем переменную окружения
+
 export default function EditCompanyPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -21,7 +23,9 @@ export default function EditCompanyPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof CompanyFormData, string>>>({});
 
   useEffect(() => {
-    axios.get<Company>(`http://127.0.0.1:8000/api/companies/${id}`)
+    if (!id) return; // ⛔ не делаем запрос, если id нет
+
+    axios.get<Company>(`${API_URL}/companies/${id}`) // ✅ слеш в конце не нужен
       .then((response) => {
         const company = response.data;
         setFormData({
@@ -60,7 +64,7 @@ export default function EditCompanyPage() {
     e.preventDefault();
     if (!validate()) return;
     try {
-      await axios.put(`http://127.0.0.1:8000/api/companies/${id}`, {
+      await axios.put(`${API_URL}/companies/${id}`, { // ✅ слеш в конце не нужен
         ...formData,
         latitude: parseFloat(formData.latitude),
         longitude: parseFloat(formData.longitude),

@@ -10,7 +10,7 @@ ENV/
 VENV/
 build/
 develop-eggs/
-# dist/
+dist/
 downloads/
 eggs/
 .eggs/
@@ -56,3 +56,9 @@ coverage.xml
 # Other
 pip-log.txt
 pip-delete-this-directory.txt
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*

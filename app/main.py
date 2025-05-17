@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 
+
 # Настройка логгера
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,6 +19,7 @@ logger.info("✅ index.html exists: %s", os.path.exists(os.path.join(frontend_pa
 
 app = FastAPI(
     title="Sandbox Project API",
+    redirect_slashes=True,  # 🔄 включаем глобально
     description="API для сбора вакансий и публикации в Telegram",
     version="0.1.0",
     docs_url="/docs",              # ✅ Swagger UI
@@ -36,7 +38,12 @@ app.include_router(router, prefix="/api")
 # Разрешаем CORS для локального dev-фронтенда (если используешь Vite)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:5173",
+        "https://sandbox.leonidk.de"
+        ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -7,7 +7,8 @@ from typing import List
 
 router = APIRouter(
     prefix="/companies",
-    tags=["companies"]
+    tags=["companies"],
+    redirect_slashes=True  # 🔄 Позволяет автоматически перенаправлять /companies → /companies/
 )
 
 @router.get("/", response_model=List[CompanyOut])

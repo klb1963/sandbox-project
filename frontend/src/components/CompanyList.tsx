@@ -7,6 +7,11 @@ import { Link } from 'react-router-dom';
 // Тип, представляющий допустимые ключи объекта Company, которые можно использовать для сортировки
 type SortKey = keyof Company;
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+console.log('🌐 VITE_API_URL:', API_URL);
+console.log('🧪 API_URL in CompanyList:', import.meta.env.VITE_API_URL);
+
 const CompanyList: React.FC = () => {
   // Состояние для списка компаний
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -23,7 +28,7 @@ const CompanyList: React.FC = () => {
   // Загрузка компаний с сервера при монтировании компонента
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:8000/api/companies/')
+    .get(`${API_URL}/companies/`) // ✅ слеш в конце
       .then(response => {
         const valid = response.data.filter(
           (c: Company) => c.id !== undefined && c.name?.trim() !== ''
@@ -56,7 +61,7 @@ const CompanyList: React.FC = () => {
     if (!companyToDelete) return;
 
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/companies/${companyToDelete.id}`);
+      await axios.delete(`${API_URL}/companies/${companyToDelete.id}`); // ✅ слеш в конце не нужен
       setCompanies(prev => prev.filter(c => c.id !== companyToDelete.id)); // удаляем из списка
       setCompanyToDelete(null); // закрываем модалку
     } catch (error) {

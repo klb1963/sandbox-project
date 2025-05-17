@@ -6,6 +6,8 @@ import './Form.css'; // при наличии стилей
 
 type CompanyFormData = Omit<Company, 'id'>;
 
+const API_URL = import.meta.env.VITE_API_URL; // ✅
+
 const AddCompanyPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const AddCompanyPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:8000/api/companies', formData);
+      await axios.post(`${API_URL}/companies/`, formData); // ✅ слеш в конце
       navigate('/');
     } catch (error) {
       console.error(error);
