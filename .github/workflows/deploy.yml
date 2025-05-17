@@ -18,6 +18,9 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Set production API URL
+        run: echo "VITE_API_URL=https://sandbox.leonidk.de/api" > frontend/.env.production
+        
       - name: Install frontend dependencies and build
         run: |
           cd frontend
