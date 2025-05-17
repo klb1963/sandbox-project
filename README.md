@@ -16,4 +16,4 @@
 ```bash
 uvicorn app.main:app --reload
 
-Тестовый пуш ЕЩЕ РАЗ
+Тестовый пуш ЕЩЕ РАЗ# redeploy trigger
