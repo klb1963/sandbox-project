@@ -72,7 +72,7 @@ const CompanyList: React.FC = () => {
 
   return (
     <div className="company-list-wrapper">
-      <h2>Список компаний</h2>
+      <h2>Список компаний <span style={{ fontWeight: 'normal', fontSize: '0.9em' }}>(всего компаний : {companies.length} )</span></h2>
   
       <table className="company-table">
         <thead>
