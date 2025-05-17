@@ -20,6 +20,9 @@ app = FastAPI(
     title="Sandbox Project API",
     description="API для сбора вакансий и публикации в Telegram",
     version="0.1.0",
+    docs_url="/docs",              # ✅ Swagger UI
+    redoc_url="/redoc",            # ✅ ReDoc
+    openapi_url="/openapi.json",   # ✅ OpenAPI spec
     contact={
         "name": "LeonidK",
         "url": "https://sandbox.leonidk.de",
