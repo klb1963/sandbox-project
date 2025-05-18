@@ -19,7 +19,7 @@ interface Props {
 const VacancyTable: React.FC<Props> = ({ vacancies }) => {
   return (
     <div className="container">
-      <h2>Список вакансий</h2>
+      <h2>Список вакансий <span style={{ color: '#555', fontSize: '0.8em' }}>(всего: {vacancies.length})</span></h2>
       <div className="table-wrapper">
         <table className="company-table">
           <thead>
