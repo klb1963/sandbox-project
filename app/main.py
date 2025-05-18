@@ -1,3 +1,5 @@
+#✅ main.py
+
 from fastapi.staticfiles import StaticFiles
 import os
 import logging
@@ -5,6 +7,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 
+# ✅ Добавляем импорты для создания таблиц
+from app.database.db import Base, engine
+from app.models.company import Company
+from app.models.vacancy import Vacancy
 
 # Настройка логгера
 logging.basicConfig(level=logging.INFO)
@@ -16,6 +22,9 @@ frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../fron
 # ✅ Печатаем лог
 logger.info("✅ Static frontend path found: %s", frontend_path)
 logger.info("✅ index.html exists: %s", os.path.exists(os.path.join(frontend_path, "index.html")))
+
+# ✅ Создание всех таблиц (если не существуют)
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Sandbox Project API",

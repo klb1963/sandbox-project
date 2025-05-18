@@ -1,4 +1,7 @@
+# ✅ app/models/company.py
+
 from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.orm import relationship
 from app.database.db import Base
 
 class Company(Base):
@@ -8,7 +11,6 @@ class Company(Base):
     name = Column(String, unique=True, index=True)
     city = Column(String)
     website = Column(String)
-    email = Column(String)
     linkedin = Column(String)
-    latitude = Column(Float, nullable=True)
-    longitude = Column(Float, nullable=True)
+    email = Column(String)
+    vacancies = relationship("Vacancy", back_populates="company", cascade="all, delete")
