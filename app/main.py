@@ -18,14 +18,13 @@ logger = logging.getLogger(__name__)
 
 # Подключаем фронтенд в проде
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend/dist"))
-
-# ✅ Печатаем лог
 logger.info("✅ Static frontend path found: %s", frontend_path)
 logger.info("✅ index.html exists: %s", os.path.exists(os.path.join(frontend_path, "index.html")))
 
 # ✅ Создание всех таблиц (если не существуют)
 Base.metadata.create_all(bind=engine)
 
+# 🚀 FastAPI-приложени
 app = FastAPI(
     title="Sandbox Project API",
     redirect_slashes=True,  # 🔄 включаем глобально
