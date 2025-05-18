@@ -1,3 +1,5 @@
+//✅ src/api.ts
+
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,4 +26,9 @@ export const updateCompany = async (id: number, data: any) => {
 
 export const deleteCompany = async (id: number) => {
   await axios.delete(`${API_URL}/companies/${id}/`);
+};
+
+export const getVacancies = async () => {
+  const response = await axios.get(`${API_URL}/vacancies/`);
+  return response.data;
 };

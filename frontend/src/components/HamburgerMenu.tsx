@@ -13,6 +13,7 @@ export default function HamburgerMenu() {
       <ul className={`menu ${isOpen ? 'open' : ''}`}>
         <li><Link to="/" onClick={() => setIsOpen(false)}>📋 Список компаний</Link></li>
         <li><Link to="/add" onClick={() => setIsOpen(false)}>➕ Добавить компанию</Link></li>
+        <li><Link to="/vacancies" onClick={() => setIsOpen(false)}>💼 Вакансии</Link></li>
       </ul>
     </nav>
   );

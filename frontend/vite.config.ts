@@ -11,5 +11,10 @@ export default defineConfig(({ mode }) => {
     define: {
       'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL),
     },
+    server: {
+      proxy: {
+        '/api': 'http://127.0.0.1:8000', // 🔁 прокси на FastAPI
+      },
+    },
   }
 })
