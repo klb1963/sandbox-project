@@ -6,7 +6,7 @@ from app.database.db import SessionLocal
 from app.models.company import Company
 from app.api.vacancies.service import create_vacancy
 from app.schemas.vacancy import VacancyCreate
-from scraper import parse_jobs_from_url
+from app.services.scraper import parse_jobs_from_url
 
 def run_scraping():
     db: Session = SessionLocal()
