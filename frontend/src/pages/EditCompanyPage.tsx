@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Company, CompanyFormData } from '../types/Company';
 import './Form.css';
 
-const API_URL = import.meta.env.VITE_API_URL; // ✅ Используем переменную окружения
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function EditCompanyPage() {
   const { id } = useParams<{ id: string }>();
@@ -20,23 +20,25 @@ export default function EditCompanyPage() {
     longitude: '',
   });
 
+  const [loading, setLoading] = useState(true); // ✅ Новый флаг загрузки
   const [errors, setErrors] = useState<Partial<Record<keyof CompanyFormData, string>>>({});
 
   useEffect(() => {
-    if (!id) return; // ⛔ не делаем запрос, если id нет
+    if (!id) return;
 
-    axios.get<Company>(`${API_URL}/companies/${id}`) // ✅ слеш в конце не нужен
+    axios.get<Company>(`${API_URL}/companies/${id}`)
       .then((response) => {
         const company = response.data;
         setFormData({
-          name: company.name,
-          city: company.city,
-          website: company.website,
-          email: company.email,
-          linkedin: company.linkedin,
-          latitude: company.latitude.toString(),
-          longitude: company.longitude.toString(),
+          name: company.name || '',
+          city: company.city || '',
+          website: company.website || '',
+          email: company.email || '',
+          linkedin: company.linkedin || '',
+          latitude: company.latitude?.toString() ?? '',
+          longitude: company.longitude?.toString() ?? '',
         });
+        setLoading(false); // ✅ Завершили загрузку
       })
       .catch((error) => {
         console.error('Ошибка при загрузке компании:', error);
@@ -64,7 +66,7 @@ export default function EditCompanyPage() {
     e.preventDefault();
     if (!validate()) return;
     try {
-      await axios.put(`${API_URL}/companies/${id}`, { // ✅ слеш в конце не нужен
+      await axios.put(`${API_URL}/companies/${id}`, {
         ...formData,
         latitude: parseFloat(formData.latitude),
         longitude: parseFloat(formData.longitude),
@@ -75,6 +77,11 @@ export default function EditCompanyPage() {
       alert('Ошибка при сохранении компании');
     }
   };
+
+  if (loading) {
+    // ✅ Показываем заглушку до загрузки данных
+    return <p>Загрузка данных компании...</p>;
+  }
 
   return (
     <div className="form-container">

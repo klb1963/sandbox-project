@@ -23,7 +23,7 @@ def run_scraping():
             print(f"🔍 Найдено вакансий: {len(vacancies)}")
 
             for v in vacancies:
-                create_vacancy(db, VacancyCreate(**v.dict()))
+                create_vacancy(db, VacancyCreate(**v.model_dump()))
                 total += 1
         except Exception as e:
             print(f"❌ Ошибка при обработке {url}: {e}")
