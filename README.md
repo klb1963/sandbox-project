@@ -62,6 +62,7 @@ git push origin main
 ⸻
 ✅ 5. Перезапуск бэкенда на VPS
 
+вход на VPS под leonidk: ssh sandbox
 ssh leonidk@94.130.75.230
 cd /home/leonidk/sandbox-project
 source venv/bin/activate
